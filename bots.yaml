@@ -1,0 +1,70 @@
+apps:
+    example_app_name:BrexeBots
+
+        # From dev.twitter.com
+        consumer_key: 'VN2MS1Dt6Ch4WIprLxNLn5SN3'
+        consumer_secret: 'IrxVcj13iveUZex9a17Zz5WEjWlQglHF4paK9N0pqQLUyZcbln'
+
+users:
+    example_screen_name:
+        # oauth with twitter to get these
+        key: '2533478329-Al80Rn3QPa0UgFYa7nELJvPgBxw7gePobqqrpcP'
+        secret: '6ppTmTt6jZbhWJCQ8J5UKH8JEymcYXSRr6GAPPE4vAlth'
+
+        # this should match one of the apps above
+        app: example_app_name
+
+        # If your bot is based on another account, the screen name of that account
+        parent: "vaigh"
+
+        # Location of a text file, with one tweet (or other sentence) per line
+        # This can also be set on the command line.
+        # This can be a single item or a list
+        #
+        corpus: data/tweets.txt
+
+        # How many tweets should we check to make sure we're not repeating something we already tweeted?
+        checkback: 20
+
+        # This determines how long of a phrase the markov chain be working with.
+        # Higher values are slower and hew closer to the corpus
+        # Lower values are faster and more oddball
+        #
+        state_size: 3
+
+        # Words to never tweet
+        # These will be added to a built-in blacklist, taken from https://github.com/dariusk/wordfilter
+        #
+        blacklist:
+            - badword
+            - evilword
+
+        # With these set to True, we won't tweet these types or learn them from its parent
+        #
+        no_retweets: False
+        no_replies: False
+
+        # With these set, these types of tweets won't be tweeted
+        # They will still be fed into the corpus, they will just
+        # be filtered out of results
+        #
+        no_hashtags: False
+        no_urls: False
+        no_mentions: False
+        # Symbols are stock ticker abbreviations like $APPL
+        no_symbols: False
+
+        # With these set, the text will be stripped of these entities before being fed to the brain
+        # For instance, if filter_hashtags is set,
+        # "What's Going On #lemonheads" will be fed to the brain as:
+        # ""What's Going On"
+        # Take care. Changing the corpus in this way can lead to strange results.
+        #
+        filter_hashtags: False
+        filter_media: False
+        filter_urls: False
+        filter_mentions: False
+        filter_symbols: False
+
+        # By default, wordfilter is applied to the parent's tweets.
+        filter_parent_badwords: True
